@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package streaming.spring;
+package boutiqueenligne.spring;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -22,8 +22,8 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 @SpringBootApplication
 @EnableAutoConfiguration
-@ComponentScan(basePackages="streaming")
-@EnableJpaRepositories(basePackages = "streaming")
+@ComponentScan(basePackages="boutiqueenligne")
+@EnableJpaRepositories(basePackages = "boutiqueenligne")
 public class SpringConfig {
     
     @Bean
@@ -35,7 +35,7 @@ public class SpringConfig {
     
     @Bean
     public EntityManagerFactory entityManagerFactory(){
-        return Persistence.createEntityManagerFactory("streaming_PU");
+        return Persistence.createEntityManagerFactory("boutiquePU");
     }
     
 }
