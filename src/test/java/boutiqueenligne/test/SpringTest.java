@@ -38,56 +38,56 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = SpringConfig.class)
 public class SpringTest {
-
+    
     @PersistenceContext
     private EntityManager em;
-
+    
     @Autowired
     CalculPrixTotalAvecPromoService cpt;
-
+    
     @Autowired
     UtilisateurService utilisateurService;
-
+    
     @Autowired
     CommandeService commandeService;
-
+    
     @Autowired
     CodePromoService codePromoService;
-
+    
     @Autowired
     ArticleService articleService;
-
+    
     @Autowired
     PaiementService commandeServiceImpl;
-
+    
     @Autowired
     DataBaseService dataBaseService;
-
+    
     @Autowired
     PaiementService paiementService;
-
+    
     @Autowired
     CalculPrixTotalAvecPromoService calculPrixTotalAvecPromoService;
 
-//    @Before
-    public void init() {
+    @Before
+    public void init() throws StockInsufisantException {
 
 //    Commande c = new Commande();
 //    c.setPrixTotale(500);
 //    c.setId(1L);
 //    cpt.generationCodePromo(20, TypeCode.POURCENTAGE);
 //    commandeService.save(c);
-        Utilisateur u = new Utilisateur();
-        u.setEmail("valentin.fiatte@gmail.com");
-        u.setMdp("mdp");
-        u.setNom("FIATTE");
-        u.setPrenom("Valentin");
-        u.setTelephone("0676204126");
-        u.setVille("Bordeaux");
-        u.setCodePostal("33000");
-        u.setTypeUtil(TypeUtilisateur.ADMIN);
-        utilisateurService.save(u);
-
+//        Utilisateur u = new Utilisateur();
+//        u.setEmail("valentin.fiatte@gmail.com");
+//        u.setMdp("mdp");
+//        u.setNom("FIATTE");
+//        u.setPrenom("Valentin");
+//        u.setTelephone("0676204126");
+//        u.setVille("Bordeaux");
+//        u.setCodePostal("33000");
+//        u.setTypeUtil(TypeUtilisateur.ADMIN);
+//        utilisateurService.save(u);
+//
         Article a = new Article();
         a.setNom("Ordinateur");
         a.setPrix(1000);
@@ -99,14 +99,18 @@ public class SpringTest {
         a1.setPrix(600);
         a1.setStock(8);
         a1.setId(2L);
-
-        calculPrixTotalAvecPromoService.generationCodePromo(10, TypeCode.POURCENTAGE);
-
+//
+//        calculPrixTotalAvecPromoService.generationCodePromo(10, TypeCode.POURCENTAGE);
+//
         articleService.save(a);
         articleService.save(a1);
-
+        paiementService.initSousCommande(articleService.findOne(1L), 2);
+        paiementService.initSousCommande(articleService.findOne(2L), 1);
+        paiementService.initCommande();
+        
+        
     }
-
+    
     @Test
     public void doNadaOK() throws CodeInvalideException1, StockInsufisantException {
         //          cpt.calculPrixTotal(commandeService.findOne(1L), codePromoService.findOne(1L));
@@ -119,11 +123,11 @@ public class SpringTest {
         //        cpt.generationCodePromo(20, TypeCode.REMISE);
         //        Commande c = new Commande();
 
-//               paiementService.initCommande(articleService.findOne(2L), 4);
+//               paiementService.initCommande(c, a, 0)
         //       calculPrixTotalAvecPromoService.calculPrixTotal(commandeService.findOne(4L), codePromoService.findOne(2L));
-               paiementService.commandePayee(commandeService.findOne(52L));
+//        paiementService.commandePayee(commandeService.findOne(52L));
 //        paiementService.commandeLivrée(commandeService.findOne(4L));
-              
+        
     }
-
+    
 }

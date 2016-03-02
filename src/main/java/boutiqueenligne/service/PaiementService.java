@@ -28,39 +28,47 @@ public class PaiementService {
 
     @Autowired
     CommandeService commandeService;
-    
+
     @Autowired
     MailService mailService;
-    
+
     @Autowired
     ConfigService configService;
 
-    public void initCommande(Article a, int i) throws StockInsufisantException {
-        Commande c = new Commande();
+    public void initSousCommande(Article a, int quantite) throws StockInsufisantException {
         SousCommande sc = new SousCommande();
-        double prixT = c.getPrixTotale();
-        double prix = a.getPrix();
-        if (i <= a.getStock()) {
-            c.setPrixTotale(prixT + prix * i);
-            sc.setQuantité(i++);
-            a.getSousCommandes().add(sc);
-            sc.setArticle(a);
 
-            sousCommandeService.save(sc);
-
-            c.getSousCommandes().add(sc);
-            sc.setCommande(c);
-
-            commandeService.save(c);
-            sousCommandeService.save(sc);
-            
-            
+        if (quantite <= a.getStock()) {
+            for (int i = 0; i <= quantite; i++) {
+                a.getSousCommandes().add(sc);
+                sc.setArticle(a);
+                sc.setQuantité(quantite);
+                sousCommandeService.save(sc);
+            }
         } else {
             System.out.println("Stock Insuffisant");
             throw new StockInsufisantException();
-            
-
         }
+
+    }
+
+    public void initCommande() {
+        Commande c = new Commande();
+        double prixT = c.getPrixTotale();
+
+        List<SousCommande> commande = c.getSousCommandes();
+
+        for (SousCommande sc : commande) {
+            Article a = sc.getArticle();
+            double prix = a.getPrix() * sc.getQuantité();
+            prixT = prixT + prix;
+            c.setPrixTotale(prixT);
+            commandeService.save(c);
+            sousCommandeService.save(sc);
+//            c.getSousCommandes().add(sc);
+//            sc.setCommande(c);
+        }
+        commandeService.save(c);
 
     }
 
@@ -79,7 +87,7 @@ public class PaiementService {
             commandeService.save(c);
             articleService.save(a);
 //            mailService.mailEnvoyé(configService.getEmailAdmin(), c.getUtilisateur().getEmail(), configService.getEmailConfirmationdeCommandeTitre(), configService.getEmailConfirmationDeCommande());
-            
+
         }
     }
 
