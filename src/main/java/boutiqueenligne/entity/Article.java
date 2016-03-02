@@ -43,11 +43,21 @@ public class Article implements Serializable {
     @Column(length = 64)
     private String nom;
 
+    private Long nbVente;
+    
     public Article() {
     }
 
     public List<SousCommande> getSousCommandes() {
         return sousCommandes;
+    }
+
+    public Long getNbVente() {
+        return nbVente;
+    }
+
+    public void setNbVente(Long nbVente) {
+        this.nbVente = nbVente;
     }
     
     

@@ -11,11 +11,11 @@
     <class>boutiqueenligne.entity.SousCommande</class>
     <class>boutiqueenligne.entity.Utilisateur</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/boutiqueenligne"/>
-      <property name="javax.persistence.jdbc.user" value="boutiqueenligne"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/BOUTIQUEENLIIGNE"/>
+      <property name="javax.persistence.jdbc.user" value="BOUTIQUEENLIIGNE"/>
       <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
-      <property name="javax.persistence.jdbc.password" value="boutiqueenligne"/>
-      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+      <property name="javax.persistence.jdbc.password" value="BOUTIQUEENLIIGNE"/>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
     </properties>
   </persistence-unit>
 </persistence>
