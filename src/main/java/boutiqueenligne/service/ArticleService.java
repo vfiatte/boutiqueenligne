@@ -6,6 +6,7 @@
 package boutiqueenligne.service;
 
 import boutiqueenligne.entity.Article;
+import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
 /**
@@ -13,5 +14,10 @@ import org.springframework.data.repository.CrudRepository;
  * @author admin
  */
 public interface ArticleService extends CrudRepository<Article, Long>{
+//        public List<Article> findByNom(Article a);
+//    public List<Article> findByCategorieIdOrderByPrixAsc(long id);
+//    public List<Article> findByCategorieId(long id);
+//    public List<Article> findByNomOrderByStock(String nom);
+//    public List<Article> findByNomOrderByPrixAsc(String nom);
     
 }

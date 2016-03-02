@@ -28,11 +28,19 @@ public class CodePromo implements Serializable {
     private String code;
     
     @Enumerated(EnumType.STRING)
-    private TypeCode type;
+    private TypeCode typeCode;
     
-    private double valeur;
+    private int valeur;
 
     public CodePromo() {
+    }
+
+    public TypeCode getTypeCode() {
+        return typeCode;
+    }
+
+    public void setTypeCode(TypeCode typeCode) {
+        this.typeCode = typeCode;
     }
 
     
@@ -54,18 +62,18 @@ public class CodePromo implements Serializable {
     }
 
     public TypeCode getType() {
-        return type;
+        return typeCode;
     }
 
-    public void setType(TypeCode type) {
-        this.type = type;
+    public void setType(TypeCode typeCode) {
+        this.typeCode = typeCode;
     }
 
-    public double getValeur() {
+    public int getValeur() {
         return valeur;
     }
 
-    public void setValeur(double valeur) {
+    public void setValeur(int valeur) {
         this.valeur = valeur;
     }
     

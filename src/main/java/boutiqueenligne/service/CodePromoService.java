@@ -6,6 +6,7 @@
 package boutiqueenligne.service;
 
 import boutiqueenligne.entity.CodePromo;
+import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
 /**
@@ -13,5 +14,5 @@ import org.springframework.data.repository.CrudRepository;
  * @author admin
  */
 public interface CodePromoService extends CrudRepository<CodePromo, Long>{
-    
+    public List<CodePromo> findByCode(String s);
 }

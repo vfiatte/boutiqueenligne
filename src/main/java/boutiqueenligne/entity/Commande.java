@@ -52,12 +52,38 @@ public class Commande implements Serializable {
     private double prixTotale = 0;
     
     private boolean paye = false;
+    
+    private boolean livre = false;
 
     public Commande() {
     }
-    
-    
 
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
+    }
+
+    public ModeLivraison getModeLivraison() {
+        return modeLivraison;
+    }
+
+    public void setModeLivraison(ModeLivraison modeLivraison) {
+        this.modeLivraison = modeLivraison;
+    }
+
+    public List<SousCommande> getSousCommandes() {
+        return sousCommandes;
+    }
+
+    public void setSousCommandes(List<SousCommande> sousCommandes) {
+        this.sousCommandes = sousCommandes;
+    }
+    
+    
+    
     public Long getId() {
         return id;
     }
@@ -65,6 +91,16 @@ public class Commande implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public boolean isLivre() {
+        return livre;
+    }
+
+    public void setLivre(boolean livre) {
+        this.livre = livre;
+    }
+    
+    
 
     public Date getDateDeCommande() {
         return dateDeCommande;

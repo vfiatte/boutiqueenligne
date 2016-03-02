@@ -6,49 +6,26 @@
 package boutiqueenligne.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 /**
  *
  * @author admin
  */
 @Entity
-public class ModeLivraison implements Serializable {
+public class Mail implements Serializable {
 
-    
-    @OneToMany(mappedBy = "modeLivraison")
-    private List<Commande> modeLivraisonCommandes = new ArrayList<Commande>();
-    
-    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @Column(length = 32)
-    private String nom;
+    private String titre;
     
-    private double prix;
-
-    public ModeLivraison() {
-    }
-
-    public List<Commande> getModeLivraisonCommandes() {
-        return modeLivraisonCommandes;
-    }
-
-    public void setModeLivraisonCommandes(List<Commande> modeLivraisonCommandes) {
-        this.modeLivraisonCommandes = modeLivraisonCommandes;
-    }
-    
-    
+    private String message;
 
     public Long getId() {
         return id;
@@ -57,25 +34,27 @@ public class ModeLivraison implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public double getPrix() {
-        return prix;
-    }
-
-    public void setPrix(double prix) {
-        this.prix = prix;
-    }
-
     
     
+
+    public String getTitre() {
+        return titre;
+    }
+
+    public void setTitre(String titre) {
+        this.titre = titre;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+    
+    
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -86,10 +65,10 @@ public class ModeLivraison implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ModeLivraison)) {
+        if (!(object instanceof Mail)) {
             return false;
         }
-        ModeLivraison other = (ModeLivraison) object;
+        Mail other = (Mail) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -98,7 +77,7 @@ public class ModeLivraison implements Serializable {
 
     @Override
     public String toString() {
-        return "streaming.entity.ModeLivraison[ id=" + id + " ]";
+        return "boutiqueenligne.entity.Mail[ id=" + id + " ]";
     }
     
 }

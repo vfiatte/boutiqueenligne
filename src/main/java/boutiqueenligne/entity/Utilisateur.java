@@ -5,6 +5,7 @@
  */
 package boutiqueenligne.entity;
 
+import boutiqueenligne.enumeration.TypeUtilisateur;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,26 +25,41 @@ public class Utilisateur implements Serializable {
 
     @OneToMany(mappedBy = "utilisateur")
     private List<Commande> commandesPassees = new ArrayList<Commande>();
-    
-    
-    
+
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @Column(updatable = true)
+    @Column(unique = true, length = 32)
     private String email;
-    
+    @Column(length = 32)
     private String mdp;
+    @Column(length = 128)
     private String adresse;
+    @Column(length = 6)
     private String codePostal;
+    @Column(length = 13)
     private String telephone;
+    @Column(length = 32)
     private String nom;
+    @Column(length = 32)
     private String prenom;
+    @Column(length = 32)
     private String ville;
+    
+    private TypeUtilisateur typeUtil;
 
     public Utilisateur() {
+    }
+
+    public List<Commande> getCommandesPassees() {
+        return commandesPassees;
+    }
+
+    public void setCommandesPassees(List<Commande> commandesPassees) {
+        this.commandesPassees = commandesPassees;
     }
     
     
@@ -55,6 +71,16 @@ public class Utilisateur implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public TypeUtilisateur getTypeUtil() {
+        return typeUtil;
+    }
+
+    public void setTypeUtil(TypeUtilisateur typeUtil) {
+        this.typeUtil = typeUtil;
+    }
+    
+    
 
     public String getEmail() {
         return email;
